@@ -1,14 +1,36 @@
 import React from 'react'
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todos:  [
+        {
+          task: 'Organize Garage',
+          id: 1528817077286, 
+          completed: false
+        },
+        {
+          task: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        }
+      ]
+    }
+  }
+
+
   render() {
+    const { todos } = this.state
     return (
       <div>
         <h1>ToDo App</h1>
         <ul>
-          <li>Walk Dog</li>
-          <li>Work Out</li>
-          <li>Take out Trash</li>
+          {
+            todos.map(todo => {
+              return (<li>{todo.task} { todo.completed? <span>Completed</span> : <span></span>}</li>)
+            })
+          }
         </ul>
         <form>
           <input/>

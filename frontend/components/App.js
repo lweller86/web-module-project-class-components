@@ -1,15 +1,15 @@
-import React from 'react'
-
+import React from 'react';
 import TodoList from './TodoList';
+import TodoForm from './Form';
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos:  [
+      todos: [
         {
           task: 'Organize Garage',
-          id: 1528817077286, 
+          id: 1528817077286,
           completed: true
         },
         {
@@ -21,25 +21,47 @@ export default class App extends React.Component {
     }
   }
 
+  handleAdd = (task) => {
 
-  render() {
-    const { todos } = this.state
-    return (
-      <div>
-        <h1>ToDo App</h1>
-        <TodoList todos={todos}/>
-        
-        <form>
-          <input/>
-          <button>Add</button>
-        </form>
+    const newTodo = {
+      task: task,
+      id: Date.now(),
+      completed:false
+    };
 
-        <button>
-          completed
-
-        </button>
-
-      </div>
-    )
+    this.setState({
+      ...this.state,
+      todos: [...this.state.todos, newTodo]
+    });
   }
+
+
+handleClear = () => {
+  this.setState({
+    ...this.state,
+    todos: this.state.todos.filter(todo => {
+      return (todo.completed === false);
+    })
+  });
+}
+
+
+render() {
+  const { todos } = this.state
+  return (
+    <div>
+      <h1>ToDo App</h1>
+
+      <TodoList  todos={todos} />
+      <TodoForm handleAdd={this.handleAdd}/>
+
+
+      <button onClick={this.handleClear}>
+        Clear
+
+      </button>
+
+    </div>
+  )
+}
 }

@@ -1,32 +1,48 @@
-import e from 'cors';
 import React from 'react'
-import ReactDom from "react-dom"
 
 
 
 
-export default class Form extends React.Component {
 
+export default class TodoForm extends React.Component {
 
-handleNameInput = e => {
-  this.setState({ name: e.target.value })
+  constructor(){
+    super();
+    this.state = {
+      input:""
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleAdd(e.target.value);
+  
+  
+  }
+
+handleChange = (e) => {
+    this.setState = ({
+    ...this.state,
+    input: e.target.value
+  });
 }
 
 
 
 
   render() {
+    
+   
     return (
-      <div>
+   
         <form>
-          <h2>Add to the ToDo List below:</h2>
-          <input placeholder='Name' onChange={this.handleNameInput}/>
-          <Button 
-          onClick={this.handleClick}>Click When Complete
-          </Button>
+          <input onChange={this.handleChange} />
+          <button 
+          onClick={this.handleSubmit}>Click When Complete
+          </button>
           
         </form>
-      </div>
+      
     )
   }
 }

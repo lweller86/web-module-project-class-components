@@ -3,27 +3,27 @@ import React from 'react'
 
 export default class TodoForm extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       input: ""
     }
   }
 
   handleSubmit = (e) => {
+ 
     e.preventDefault();
-    this.props.handleAdd(this.state.value);
+    this.props.handleAdd(this.state.input);
 
 
   }
 
   handleChange = (e) => {
-    this.setState[{
+    this.setState({
       ...this.state,
     input: e.target.value
-  }]
-  console.log(this.state)
-  console.log(e.target.value)
+  })
+
 }
 
   

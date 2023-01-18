@@ -40,7 +40,7 @@ export default class App extends React.Component {
   
 
   handleAdd = (task) => {
-
+console.log(task)
     const newTodo = {
       task: task,
       id: Date.now(),
